@@ -5,6 +5,7 @@ To use: Just add data-animation="ripple" to element you want to have ripple effe
 
 Options:
 data-speed="700" //Speed in miliseconds
+
 data-color="rgba(0, 0, 0, .6)" //Any color value (hash, rgb, rgba, hsl, hsla...)
 
 For now, you set default color and speed of animation inside javascript (variable speed and color), or change them in html tag
