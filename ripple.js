@@ -2,9 +2,6 @@
     var isMobile = window.navigator.userAgent.match(/Mobile/) && window.navigator.userAgent.match(/Mobile/)[0] === "Mobile",
     event = isMobile ? "touchend" : "click",
     button = document.querySelectorAll('*[data-animation="ripple"]');
-    //Speed in miliseconds
-    var speed = 700;
-    var color = 'rgba(255,255,255,0.8)';
 
     for (var i = 0; i < button.length; i++) {
         var currentBtn = button[i];
@@ -27,6 +24,9 @@
                 posMouseX = e.pageX - rect.left;
                 posMouseY = e.pageY - rect.top;
             }
+
+            var speed = this.dataset.speed || 700,
+            color = this.dataset.color || 'rgba(255,255,255,0.8)';
 
             var baseCSS =  `position: absolute;
             width: ${btnWidth * 2}px;
