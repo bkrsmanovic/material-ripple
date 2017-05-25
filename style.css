@@ -1,6 +1,0 @@
-/* Only css needed for ripple effect to work properly */
-
-*[data-animation="ripple"] {
-	position: relative;
-	overflow: hidden;
-}
