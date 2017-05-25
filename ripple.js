@@ -43,10 +43,11 @@
             var ripple = document.createElement("span");
             ripple.style.cssText = baseCSS;
 
-            currentBtn.style.overflow = "hidden";
+            this.style.position = "relative";
+            this.style.overflow = "hidden";
+
             this.appendChild(ripple);
 
-            //start animation
             setTimeout( function() {
                 ripple.style.cssText = baseCSS + `transform:scale(1); opacity: 0;`;
             }, 5);
