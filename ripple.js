@@ -6,8 +6,8 @@
 
                 const rect = button.getBoundingClientRect();
 
-                const posMouseX = (e.pageX || e.changedTouches[0].pageX) - rect.left
-                const posMouseY = (e.pageY || e.changedTouches[0].pageY) - rect.top
+                const posMouseX = (e.pageX || e.changedTouches[0].pageX) - rect.left;
+                const posMouseY = (e.pageY || e.changedTouches[0].pageY) - rect.top;
 
                 const width = Math.max(rect.width, rect.height);
 
