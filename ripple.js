@@ -29,13 +29,13 @@
                 `width: ${btnWidth * 2}px;`,
                 `height: ${btnWidth * 2}px;`,
                 `transition: all linear ${speed}ms;`,
-                'transition-timing-function:cubic-bezier(0.250, 0.460, 0.450, 0.940);',
+                'transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);',
                 'border-radius: 50%;',
                 `background: ${color};`,
                 `top: ${posMouseY - btnWidth}px;`,
-                `left:${posMouseX - btnWidth}px;`,
+                `left: ${posMouseX - btnWidth}px;`,
                 'pointer-events: none;',
-                `transform:scale(0);`,
+                `transform: scale(0);`,
             ].join('');
 
             var ripple = document.createElement('span');
