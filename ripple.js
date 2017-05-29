@@ -1,20 +1,20 @@
 (function () {
-    document.querySelectorAll('*[data-animation="ripple"]').forEach(function (button) {
-        ['click', 'touchend'].forEach(function (event) {
-            button.addEventListener(event, function (e) {
-                var target = e.target;
+    document.querySelectorAll('*[data-animation="ripple"]').forEach((button) => {
+        ['click', 'touchend'].forEach((event) => {
+            button.addEventListener(event, (e) => {
+                const target = e.target;
 
-                var rect = button.getBoundingClientRect();
+                const rect = button.getBoundingClientRect();
 
-                var posMouseX = (e.pageX || e.changedTouches[0].pageX) - rect.left
-                var posMouseY = (e.pageY || e.changedTouches[0].pageY) - rect.top
+                const posMouseX = (e.pageX || e.changedTouches[0].pageX) - rect.left
+                const posMouseY = (e.pageY || e.changedTouches[0].pageY) - rect.top
 
-                var width = Math.max(rect.width, rect.height);
+                const width = Math.max(rect.width, rect.height);
 
-                var speed = target.dataset.speed || 700;
-                var color = target.dataset.color || 'rgba(255, 255, 255, 0.8)';
+                const speed = target.dataset.speed || 700;
+                const color = target.dataset.color || 'rgba(255, 255, 255, 0.8)';
 
-                var baseCSS = [
+                const baseCSS = [
                     'position: absolute;',
                     `width: ${width * 2}px;`,
                     `height: ${width * 2}px;`,
@@ -28,7 +28,7 @@
                     `transform: scale(0);`,
                 ].join('');
 
-                var ripple = document.createElement('span');
+                const ripple = document.createElement('span');
 
                 ripple.style.cssText = baseCSS;
 
