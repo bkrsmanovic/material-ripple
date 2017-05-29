@@ -1,63 +1,50 @@
 (function () {
-    var isMobile = window.navigator.userAgent.match(/Mobile/) && window.navigator.userAgent.match(/Mobile/)[0] === "Mobile",
-    event = isMobile ? "touchend" : "click",
-    button = document.querySelectorAll('*[data-animation="ripple"]');
+    document.querySelectorAll('*[data-animation="ripple"]').forEach((button) => {
+        ['click', 'touchend'].forEach((event) => {
+            button.addEventListener(event, (e) => {
+                const target = e.target;
 
-    for (var i = 0; i < button.length; i++) {
-        var currentBtn = button[i];
-        // console.log(window.getComputedStyle(button[i], null).getPropertyValue('background'));
+                const rect = button.getBoundingClientRect();
 
-        currentBtn.addEventListener(event, function(e) {
-            e.preventDefault();
-            const button = e.target,
-            rect = button.getBoundingClientRect(),
-            originalBtn = this,
-            btnHeight = rect.height,
-            btnWidth = rect.width;
-            let posMouseX = 0,
-            posMouseY = 0;
+                const posMouseX = (e.pageX || e.changedTouches[0].pageX) - rect.left;
+                const posMouseY = (e.pageY || e.changedTouches[0].pageY) - rect.top;
 
-            if (isMobile) {
-                posMouseX = e.changedTouches[0].pageX - rect.left;
-                posMouseY = e.changedTouches[0].pageY - rect.top;
-            } else {
-                posMouseX = e.pageX - rect.left;
-                posMouseY = e.pageY - rect.top;
-            }
+                const width = Math.max(rect.width, rect.height);
 
-            var speed = this.dataset.speed || 700,
-            color = this.dataset.color || 'rgba(255,255,255,0.8)';
+                const speed = target.dataset.speed || 700;
+                const color = target.dataset.color || 'rgba(255, 255, 255, 0.8)';
 
-            var baseCSS =  `position: absolute;
-            width: ${btnWidth * 2}px;
-            height: ${btnWidth * 2}px;
-            transition: all linear ` + speed + `ms;
-            transition-timing-function:cubic-bezier(0.250, 0.460, 0.450, 0.940);
-            border-radius: 50%;
-            background: ` + color + `;
-            top:${posMouseY - btnWidth}px;
-            left:${posMouseX - btnWidth}px;
-            pointer-events: none;
-            transform:scale(0)`
+                const baseCSS = [
+                    'position: absolute;',
+                    `width: ${width * 2}px;`,
+                    `height: ${width * 2}px;`,
+                    `transition: all linear ${speed}ms;`,
+                    'transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);',
+                    'border-radius: 50%;',
+                    `background: ${color};`,
+                    `top: ${posMouseY - width}px;`,
+                    `left: ${posMouseX - width}px;`,
+                    'pointer-events: none;',
+                    `transform: scale(0);`,
+                ].join('');
 
-            var ripple = document.createElement("span");
-            ripple.style.cssText = baseCSS;
+                const ripple = document.createElement('span');
 
-            this.style.position = "relative";
-            this.style.overflow = "hidden";
+                ripple.style.cssText = baseCSS;
 
-            this.appendChild(ripple);
+                target.style.position = 'relative';
+                target.style.overflow = 'hidden';
 
-            setTimeout( function() {
-                ripple.style.cssText = baseCSS + `transform:scale(1); opacity: 0;`;
-            }, 5);
+                target.appendChild(ripple);
 
-            setTimeout( function() {
-                ripple.remove();
-                if (currentBtn.href) {
-                    window.location.href = currentBtn.href;
-                }
-            }, speed);
-        })
-    }
+                setTimeout(function() {
+                    ripple.style.cssText = baseCSS + 'transform:scale(1); opacity: 0;';
+                }, 5);
+
+                setTimeout(function() {
+                    ripple.remove();
+                }, speed);
+            });
+        });
+    });
 }());
