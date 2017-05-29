@@ -38,17 +38,17 @@
                 `transform:scale(0);`,
             ].join('');
 
-            var ripple = document.createElement("span");
+            var ripple = document.createElement('span');
             
             ripple.style.cssText = baseCSS;
 
-            target.style.position = "relative";
-            target.style.overflow = "hidden";
+            target.style.position = 'relative';
+            target.style.overflow = 'hidden';
 
             target.appendChild(ripple);
 
             setTimeout(function() {
-                ripple.style.cssText = baseCSS + `transform:scale(1); opacity: 0;`;
+                ripple.style.cssText = baseCSS + 'transform:scale(1); opacity: 0;';
             }, 5);
 
             setTimeout(function() {
