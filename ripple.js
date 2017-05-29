@@ -7,7 +7,6 @@
         var currentBtn = button[i];
 
         currentBtn.addEventListener(event, function (e) {
-            e.preventDefault();
             var button = e.target;
 
             var rect = button.getBoundingClientRect();
@@ -55,13 +54,6 @@
             setTimeout( function() {
                 ripple.style.cssText = baseCSS + `transform:scale(1); opacity: 0;`;
             }, 5);
-
-            setTimeout( function() {
-                ripple.remove();
-                if (currentBtn.href) {
-                    window.location.href = currentBtn.href;
-                }
-            }, speed);
-        })
+        });
     }
 }());
