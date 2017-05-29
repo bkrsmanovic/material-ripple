@@ -5,7 +5,6 @@
 
     for (var i = 0; i < button.length; i++) {
         var currentBtn = button[i];
-        // console.log(window.getComputedStyle(button[i], null).getPropertyValue('background'));
 
         currentBtn.addEventListener(event, function(e) {
             e.preventDefault();
