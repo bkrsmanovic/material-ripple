@@ -1,16 +1,12 @@
 (function () {
     var isMobile = window.navigator.userAgent.match(/Mobile/) && window.navigator.userAgent.match(/Mobile/)[0] === "Mobile";
     var event = isMobile ? 'touchend' : 'click';
-    var button = document.querySelectorAll('*[data-animation="ripple"]');
 
-    for (var i = 0; i < button.length; i++) {
-        var currentBtn = button[i];
-
-        currentBtn.addEventListener(event, function (e) {
-            var button = e.target;
+    document.querySelectorAll('*[data-animation="ripple"]').forEach(function (button) {
+        button.addEventListener(event, function (e) {
+            var target = e.target;
 
             var rect = button.getBoundingClientRect();
-            var originalBtn = this;
             var btnHeight = rect.height;
             var btnWidth = rect.width;
 
@@ -25,8 +21,8 @@
                 posMouseY = e.pageY - rect.top;
             }
 
-            var speed = this.dataset.speed || 700;
-            var color = this.dataset.color || 'rgba(255, 255, 255, 0.8)';
+            var speed = target.dataset.speed || 700;
+            var color = target.dataset.color || 'rgba(255, 255, 255, 0.8)';
 
             var baseCSS = [
                 'position: absolute;',
@@ -46,10 +42,10 @@
             
             ripple.style.cssText = baseCSS;
 
-            this.style.position = "relative";
-            this.style.overflow = "hidden";
+            target.style.position = "relative";
+            target.style.overflow = "hidden";
 
-            this.appendChild(ripple);
+            target.appendChild(ripple);
 
             setTimeout(function() {
                 ripple.style.cssText = baseCSS + `transform:scale(1); opacity: 0;`;
@@ -58,6 +54,6 @@
             setTimeout(function() {
                 ripple.remove();
             }, speed);
-        })
-    }
+        });
+    });
 }());
