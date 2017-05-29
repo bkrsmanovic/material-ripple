@@ -51,9 +51,13 @@
 
             this.appendChild(ripple);
 
-            setTimeout( function() {
+            setTimeout(function() {
                 ripple.style.cssText = baseCSS + `transform:scale(1); opacity: 0;`;
             }, 5);
-        });
+
+            setTimeout(function() {
+                ripple.remove();
+            }, speed);
+        })
     }
 }());
